@@ -35,7 +35,7 @@ public class Ghost{
 
 		//If a pacman type is included in any of these sets then there is a pacman in the range of the ghost
 		return upright.contains(Type.PACMAN)||upleft.contains(Type.PACMAN)||upmid.contains(Type.PACMAN)
-		|| midright.contains(Type.PACMAN)|| midleft.contains(Type.PACMAN)||downleft.contains(Type.PACMAN)||downmid.contains(Type.PACMAN)||downright.contains(Type.PACMAN))
+		|| midright.contains(Type.PACMAN)|| midleft.contains(Type.PACMAN)||downleft.contains(Type.PACMAN)||downmid.contains(Type.PACMAN)||downright.contains(Type.PACMAN));
 
 	}
 
