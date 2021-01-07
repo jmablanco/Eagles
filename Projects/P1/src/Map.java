@@ -69,10 +69,8 @@ public class Map{
 		// Checks that the location is not a wall 
 		if (field.containsKey(loc)){
 			HashSet<Type> currplacement = field.get(loc);
-			for(Type curr: currplacement){
-				if(curr == WALL){
-					return false; 
-				}
+			if(currplacement.contains(Type.WALL)){
+				return false; 
 			}
 		}
 
@@ -82,24 +80,13 @@ public class Map{
 		// to the other set. 
 		if (!field.containsKey(loc)) field.put(loc, new HashSet<Type>());
 		field.get(loc).add(type);
-		switch(type){
-			case Type.PACMAN: 
-				JComponent comp = new PacManComponent(); 
-				break;
-			case Type.COOKIE:
-				JComponent comp = new CookieComponent(); 	
-				break; 
-			case Type.GHOST:
-				JComponent comp = new GhostComponent(); 	
-				break; 
-			case Type.WALL: 
-				JComponent comp = new WallComponent(); 	
-				break; 
-			default: 
-				return false; 
+
+		//Gets the component of that name and sets it to new location. If the comp doesn't 
+		//exist then returns false; 
+		JComponent comp = components.get(name);
+		if(comp == null){
+			return false; 
 		}
-		//adds/updates the name with it's component type and updates it's location
-		components.put(name, comp);
 		comp.setLocation(loc.x, loc.y);
 		return true;
 	}
