@@ -16,28 +16,21 @@ public class PacMan{
 
 	public ArrayList<Location> get_valid_moves() {
 		ArrayList<Location> temp = new ArrayList<>();
-		//Above
-		if (!myMap.getLoc(new Location(myLoc.x-1, myLoc.y+1)).contains(Map.Type.WALL))
-			temp.add(new Location(myLoc.x-1, myLoc.y+1));
-		if (!myMap.getLoc(new Location(myLoc.x, myLoc.y+1)).contains(Map.Type.WALL))
-			temp.add(new Location(myLoc.x, myLoc.y+1));
-		if (!myMap.getLoc(new Location(myLoc.x+1, myLoc.y+1)).contains(Map.Type.WALL))
-			temp.add(new Location(myLoc.x+1, myLoc.y+1));
 
-		//Left or right
-		if (!myMap.getLoc(new Location(myLoc.x-1, myLoc.y)).contains(Map.Type.WALL))
-			temp.add(new Location(myLoc.x-1, myLoc.y));
-		if (!myMap.getLoc(new Location(myLoc.x+1, myLoc.y)).contains(Map.Type.WALL))
-			temp.add(new Location(myLoc.x+1, myLoc.y));
-
-		//Below
-		if (!myMap.getLoc(new Location(myLoc.x-1, myLoc.y-1)).contains(Map.Type.WALL))
-			temp.add(new Location(myLoc.x-1, myLoc.y-1));
-		if (!myMap.getLoc(new Location(myLoc.x, myLoc.y-1)).contains(Map.Type.WALL))
-			temp.add(new Location(myLoc.x, myLoc.y-1));
-		if (!myMap.getLoc(new Location(myLoc.x+1, myLoc.y-1)).contains(Map.Type.WALL))
-			temp.add(new Location(myLoc.x+1, myLoc.y-1));
-
+		int x = myLoc.x;
+		int y = myLoc.y;
+		
+		//go through all coords that surround myLoc
+		for(int i = x-1; i <= x+1; i++) {
+			for(int j = y-1; j <= y+1; j++) {
+				
+				//Don't check coordinates that equal current location or less than 0 
+				if ( (i != x || j != y) && i >= 0 && j >= 0) {
+					if (!myMap.getLoc(new Location(x, y)).contains(Map.Type.WALL))
+						temp.add(new Location(x, y));
+				}
+			}
+		}
 		return temp;
 	}
 
