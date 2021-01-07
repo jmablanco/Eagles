@@ -23,6 +23,26 @@ public class PacMan{
 	}
 
 	public boolean is_ghost_in_range() { 
+		int x = myLoc.x;
+		int y = myLoc.y;
+		
+		//go through all coords that surround myLoc
+		for(int i = x-1; i <= x+1; i++) {
+			for(int j = y-1; j <= y+1; j++) {
+				
+				//Don't check coordinates that equal current location or less than 0 
+				if ( (i != x || j != y) && i >= 0 && j >= 0) {
+
+					//create Location object
+					Location coord = new Location(i,j);
+					
+					HashSet<Map.Type> loc = myMap.getLoc(coord);
+					
+					if (loc.contains(Map.Type.GHOST))
+						return true;   
+				}
+			}
+		}
 		return false;
 	}
 
