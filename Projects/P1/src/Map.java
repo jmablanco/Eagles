@@ -95,7 +95,7 @@ public class Map{
 			case Type.WALL: 
 				JComponent comp = new WallComponent(); 	
 				break; 
-			case default: 
+			default: 
 				return false; 
 		}
 		//adds/updates the name with it's component type and updates it's location
