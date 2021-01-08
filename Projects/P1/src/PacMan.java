@@ -19,7 +19,21 @@ public class PacMan{
 	}
 
 	public boolean move() {
-		return false;
+		ArrayList<Location> validMoves = this.get_valid_moves();
+		Random moveAlgorithm = new Random();
+		int numberOfMoves = validMoves.size(), 
+			direction = moveAlgorithm.nextInt(numberOfMoves);
+		Location desiredLocation = validMoves.get(direction);
+
+		//If there are no valid moves, return false
+		if (size == 0)
+			return false;
+
+		//Move Pacman to its desired location on the map, and sets its instance's location.
+		myMap.move(myName, desiredLocation, /*Not sure what type to put here*/);
+		myLoc = desiredLocation;
+
+		return true;
 	}
 
 	public boolean is_ghost_in_range() { 
