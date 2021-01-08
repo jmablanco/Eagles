@@ -77,6 +77,11 @@ public class PacMan{
 	}
 
 	public JComponent consume() { 
- 		return null;
+ 		HashSet<Type> currLoc = myMap.getLoc(myLoc); //Gets the list of what is located at pacmans location
+		//If the location has a cookie then call eat cookie from Map 
+		if(currLoc.contains(Type.COOKIE)){
+			return myMap.eatCookie(myName); 
+		}
+		return null;
 	}
 }
