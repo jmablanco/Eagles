@@ -26,7 +26,7 @@ public class PacMan{
 		Location desiredLocation = validMoves.get(direction);
 
 		//If there are no valid moves, return false
-		if (size == 0)
+		if (numberOfMoves == 0)
 			return false;
 
 		//Move Pacman to its desired location on the map, and sets its instance's location.
