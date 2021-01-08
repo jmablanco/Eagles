@@ -56,14 +56,14 @@ public class Map{
 		//update locations, components, and field
 		//use the setLocation method for the component to move it to the new location
 		
-		// May need a check for if the name was at another location then it should 
+		// Check for if the name was at another location then it should 
 		// be removed from field and locations(is gonna be overwritten anyway so may not be needed). 
-		// Location prev = locations.get(name); 
-		// HashSet<Type> prevfield = field.get(prev); 
-		// JComponent prevcomp = components.get(name);
-		// if(prev != null && prevfield != null && prevcomp != null){
-		// 	prevfield.remove()
-		// }
+		Location prev = locations.get(name); 
+		HashSet<Type> prevfield = field.get(prev); 
+		JComponent prevcomp = components.get(name);
+		if(prev != null && prevfield != null && prevcomp != null){
+			prevfield.remove(type); 
+		}
 
 
 		// Checks that the location is not a wall 
