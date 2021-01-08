@@ -67,10 +67,10 @@ public class Map{
 		//check if Name has a location
 		if (locations.containsKey(Name)) {
 			Location coord = locations.get(Name);
-					
+			
 			//get Types from the location
 			HashSet<Type> items = getLoc(coord);
-					
+			
 			//check if there is a ghost at the location
 			if(items.contains(Type.GHOST)) {
 				//use Ghost's attack method
