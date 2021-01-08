@@ -13,7 +13,23 @@ public class Ghost{
 	}
 
 	public ArrayList<Location> get_valid_moves() {
-		return null;
+		ArrayList<Location> temp = new ArrayList<>();
+
+		int x = myLoc.x;
+		int y = myLoc.y;
+		
+		//go through all coords that surround myLoc
+		for(int i = x-1; i <= x+1; i++) {
+			for(int j = y-1; j <= y+1; j++) {
+				
+				//Don't check coordinates that equal current location or less than 0 
+				if ( (i != x || j != y) && i >= 0 && j >= 0) {
+					if (!myMap.getLoc(new Location(i, j)).contains(Map.Type.WALL))
+						temp.add(new Location(i, j));
+				}
+			}
+		}
+		return temp;
 	}
 
 	public boolean move() {
