@@ -76,7 +76,7 @@ public class Map{
 
 		if (cookie) {
 			//Updating collections
-				field.put(cookieLoc, Type.EMPTY); //Replaces loc with Empty
+				field.put(cookieLoc, Type.EMPTY); //Replaces location with Empty type
 				locations.remove(name);
 				components.remove(name);
 				cookies--;
