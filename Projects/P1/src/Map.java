@@ -53,7 +53,7 @@ public class Map{
 	}
 		
 	public boolean move(String name, Location loc, Type type) {
-		return null;
+		return false;
 	}
 	
 	public HashSet<Type> getLoc(Location loc) {
