@@ -64,7 +64,25 @@ public class Map{
 	}
 
 	public boolean attack(String Name) {
-		//update gameOver
+		//check if Name has a location
+		if (locations.containsKey(Name)) {
+			Location coord = locations.get(Name);
+					
+			//get Types from the location
+			HashSet<Type> items = getLoc(coord);
+					
+			//check if there is a ghost at the location
+			if(items.contains(Type.GHOST)) {
+				//use Ghost's attack method
+				Ghost ghost = new Ghost(Name,coord,this);
+
+				if (ghost.attack()) {
+					//update gameOver
+					gameOver = true;
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 	
