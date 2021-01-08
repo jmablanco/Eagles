@@ -30,7 +30,7 @@ public class PacMan{
 			return false;
 
 		//Move Pacman to its desired location on the map, and sets its instance's location.
-		myMap.move(myName, desiredLocation, /*Not sure what type to put here*/);
+		myMap.move(myName, desiredLocation, myMap.PACMAN);
 		myLoc = desiredLocation;
 
 		return true;
