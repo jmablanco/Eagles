@@ -2,8 +2,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import javax.swing.JComponent;
 
-import com.sun.jdi.Location;
-
 public class Map{
 
 	public enum Type {
@@ -72,7 +70,7 @@ public class Map{
 			
 			Location ghost_coord = locations.get(Name);
 
-			Location pac_coord = location.get("pacman");
+			Location pac_coord = locations.get("pacman");
 			
 			//check if ghost is within pacman's vicinity
 			int x = ghost_coord.x;
