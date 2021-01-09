@@ -61,7 +61,12 @@ public class Map{
 	
 	public HashSet<Type> getLoc(Location loc) {
 		//wallSet and emptySet will help you write this method
-		return null;
+
+		//EMPTY is the only type not handled in MainFrane so, we handle it here.
+		if (field.get(loc) == null)
+			return emptySet;
+
+		return field.get(loc);
 	}
 
 	public boolean attack(String Name) {
