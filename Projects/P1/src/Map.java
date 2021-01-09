@@ -2,6 +2,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import javax.swing.JComponent;
 
+import com.sun.jdi.Location;
+
 public class Map{
 
 	public enum Type {
@@ -64,22 +66,35 @@ public class Map{
 	}
 
 	public boolean attack(String Name) {
-		//check if Name has a location
-		if (locations.containsKey(Name)) {
-			Location coord = locations.get(Name);
+		
+		//check if Ghost & Pacman have a location and component
+		if (locations.containsKey(Name) && components.containsKey(Name) && locations.containsKey("pacman") && components.containsKey("pacman")) {
 			
-			//get Types from the location
-			HashSet<Type> items = getLoc(coord);
-			
-			//check if there is a ghost at the location
-			if(items.contains(Type.GHOST)) {
-				//use Ghost's attack method
-				Ghost ghost = new Ghost(Name,coord,this);
+			Location ghost_coord = locations.get(Name);
 
-				if (ghost.attack()) {
-					//update gameOver
-					gameOver = true;
-					return true;
+			Location pac_coord = location.get("pacman");
+			
+			//check if ghost is within pacman's vicinity
+			int x = ghost_coord.x;
+			int y = ghost_coord.y;
+				
+			for (int i = x-1; i <= x+1; i++) {
+				for (int j = y-1; j <= y+1; j++) { 
+					//Check coordinates around the ghost
+					if ( (i != x || j != y) && i >= 0 && j >= 0) {
+							
+						//pacman is found in vicinity
+						if (pac_coord.x == i && pac_coord.y == j) {
+								
+							//remove pacman
+							locations.remove("pacman");
+							locations.remove("pacman");
+								
+							//update game
+							gameOver = true;
+							return true;
+						}
+					}
 				}
 			}
 		}
