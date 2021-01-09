@@ -2,6 +2,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import javax.swing.JComponent;
 
+
 public class Map{
 
 	public enum Type {
@@ -53,22 +54,108 @@ public class Map{
 	}
 		
 	public boolean move(String name, Location loc, Type type) {
-		return false;
+		//update locations, components, and field
+		//use the setLocation method for the component to move it to the new location
+		
+		// Check for if the name was at another location then it should 
+		// be removed from field and locations(is gonna be overwritten anyway so may not be needed). 
+		Location prev = locations.get(name); 
+		HashSet<Type> prevfield = field.get(prev); 
+		JComponent prevcomp = components.get(name);
+		if(prev != null && prevfield != null && prevcomp != null){
+			prevfield.remove(type); 
+		}
+
+
+		// Checks that the location is not a wall 
+		if (field.containsKey(loc)){
+			HashSet<Type> currplacement = field.get(loc);
+			if(currplacement.contains(Type.WALL)){
+				return false; 
+			}
+		}
+
+		// Adds name to locations list
+		locations.put(name, loc);
+		// if there is nothing at that location then make a new set, otherwise add 
+		// to the other set. 
+		if (!field.containsKey(loc)) field.put(loc, new HashSet<Type>());
+		field.get(loc).add(type);
+
+		//Gets the component of that name and sets it to new location. If the comp doesn't 
+		//exist then returns false; 
+		JComponent comp = components.get(name);
+		if(comp == null){
+			return false; 
+		}
+		comp.setLocation(loc.x, loc.y);
+		return true;
 	}
 	
 	public HashSet<Type> getLoc(Location loc) {
 		//wallSet and emptySet will help you write this method
-		return null;
+
+		//EMPTY is the only type not handled in MainFrane so, we handle it here.
+		if (field.get(loc) == null)
+			return emptySet;
+
+		return field.get(loc);
 	}
 
 	public boolean attack(String Name) {
-		//update gameOver
+		
+		//check if Ghost & Pacman have a location and component
+		if (locations.containsKey(Name) && components.containsKey(Name) && locations.containsKey("pacman") && components.containsKey("pacman")) {
+			
+			Location ghost_coord = locations.get(Name);
+
+			Location pac_coord = locations.get("pacman");
+			
+			//check if ghost is within pacman's vicinity
+			int x = ghost_coord.x;
+			int y = ghost_coord.y;
+				
+			for (int i = x-1; i <= x+1; i++) {
+				for (int j = y-1; j <= y+1; j++) { 
+					//Check coordinates around the ghost
+					if ( (i != x || j != y) && i >= 0 && j >= 0) {
+							
+						//pacman is found in vicinity
+						if (pac_coord.x == i && pac_coord.y == j) {
+								
+							//remove pacman
+							locations.remove("pacman");
+							locations.remove("pacman");
+								
+							//update game
+							gameOver = true;
+							return true;
+						}
+					}
+				}
+			}
+		}
 		return false;
 	}
 	
 	public JComponent eatCookie(String name) {
 		//update locations, components, field, and cookies
 		//the id for a cookie at (10, 1) is tok_x10_y1
-		return null;
+		Location cookieLoc = locations.get(name);
+		JComponent cookie = components.get(name);
+		HashSet<Type> typesAtLoc = field.get(cookieLoc);
+
+		if (cookie) {
+			//Updating collections
+			typesAtLoc.remove(Type.COOKIE); //Remove Cookie Type from location
+			if(typesAtLoc.isEmpty())
+				typesAtLoc.add(Type.EMPTY);
+			field.put(cookieLoc, typesAtLoc); //Updates items located at old cookie location
+			locations.remove(name);
+			components.remove(name);
+			cookies--;
+		}
+		
+		return cookie;
 	}
 }
