@@ -80,7 +80,7 @@ public class Map{
 			typesAtLoc.remove(Type.COOKIE); //Remove Cookie Type from location
 			if(typesAtLoc.isEmpty())
 				typesAtLoc.add(Type.EMPTY);
-			field.put(cookieLoc, typesAtLoc); //Updates items located at cookieLoc
+			field.put(cookieLoc, typesAtLoc); //Updates items located at old cookie location
 			locations.remove(name);
 			components.remove(name);
 			cookies--;
