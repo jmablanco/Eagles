@@ -28,6 +28,6 @@ public class Ghost{
 		if(!is_pacman_in_range())
 			return false;
 		
-		return map.attack("pacman");
+		return myMap.attack("myName");
 	}
 }
