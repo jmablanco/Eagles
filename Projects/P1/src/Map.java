@@ -73,14 +73,15 @@ public class Map{
 		//the id for a cookie at (10, 1) is tok_x10_y1
 		Location cookieLoc = locations.get(name);
 		JComponent cookie = components.get(name);
+		HashSet<Type> componentsAtLoc = field.get(cookieLoc);
 
 		if (cookie) {
 			//Updating collections
-				field.put(cookieLoc, new HashSet<Type>()); //Replaces location with Empty type
-				field.get(cookieLoc).add(Type.EMPTY);
-				locations.remove(name);
-				components.remove(name);
-				cookies--;
+			compsAtLoc.remove(Type.Cookie); //Remove Cookie Type from location
+			field.put(cookieLoc, componentsAtLoc); //Updates items located at cookieLoc
+			locations.remove(name);
+			components.remove(name);
+			cookies--;
 		}
 		
 		return cookie;
