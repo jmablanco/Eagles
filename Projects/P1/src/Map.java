@@ -54,42 +54,7 @@ public class Map{
 	}
 		
 	public boolean move(String name, Location loc, Type type) {
-		//update locations, components, and field
-		//use the setLocation method for the component to move it to the new location
-		
-		// Check for if the name was at another location then it should 
-		// be removed from field and locations(is gonna be overwritten anyway so may not be needed). 
-		Location prev = locations.get(name); 
-		HashSet<Type> prevfield = field.get(prev); 
-		JComponent prevcomp = components.get(name);
-		if(prev != null && prevfield != null && prevcomp != null){
-			prevfield.remove(type); 
-		}
-
-
-		// Checks that the location is not a wall 
-		if (field.containsKey(loc)){
-			HashSet<Type> currplacement = field.get(loc);
-			if(currplacement.contains(Type.WALL)){
-				return false; 
-			}
-		}
-
-		// Adds name to locations list
-		locations.put(name, loc);
-		// if there is nothing at that location then make a new set, otherwise add 
-		// to the other set. 
-		if (!field.containsKey(loc)) field.put(loc, new HashSet<Type>());
-		field.get(loc).add(type);
-
-		//Gets the component of that name and sets it to new location. If the comp doesn't 
-		//exist then returns false; 
-		JComponent comp = components.get(name);
-		if(comp == null){
-			return false; 
-		}
-		comp.setLocation(loc.x, loc.y);
-		return true;
+		return false;
 	}
 	
 	public HashSet<Type> getLoc(Location loc) {
