@@ -10,9 +10,9 @@
 ## Playing Pacman
 
 ## Running from Command Line
-In order to compule and run this program: 
-``javac -cp "src/" src/*.java
-java -cp "src/" StartMenu``
+In order to compile and run this program: <br/>
+``javac -cp "src/" src/*.java``  <br/>
+``java -cp "src/" StartMenu``
 
 ## Functions
 
