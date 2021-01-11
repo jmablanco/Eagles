@@ -32,6 +32,7 @@ public class Ghost{
 			//set ghost location to new_move
 			myLoc = new_move;
 			myMap.move(myName, new_move, Map.Type.GHOST);
+			return true
 		}
 		//no valid moves available
 		return false;
