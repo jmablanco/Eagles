@@ -1,6 +1,7 @@
 import java.util.HashSet;
 import java.util.ArrayList;
 import javax.swing.JComponent;
+import java.util.Random;
 
 public class PacMan{
 	String myName;
@@ -77,9 +78,9 @@ public class PacMan{
 	}
 
 	public JComponent consume() { 
- 		HashSet<Type> currLoc = myMap.getLoc(myLoc); //Gets the list of what is located at pacmans location
+ 		HashSet<Map.Type> currLoc = myMap.getLoc(myLoc); //Gets the list of what is located at pacmans location
 		//If the location has a cookie then call eat cookie from Map 
-		if(currLoc.contains(Type.COOKIE)){
+		if(currLoc.contains(Map.Type.COOKIE)){
 			return myMap.eatCookie(myName); 
 		}
 		return null;
