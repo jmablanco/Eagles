@@ -75,7 +75,7 @@ public class Map{
 		JComponent cookie = components.get(name);
 		HashSet<Type> typesAtLoc = field.get(cookieLoc);
 
-		if (cookie) {
+		if (cookie != null) {
 			//Updating collections
 			typesAtLoc.remove(Type.COOKIE); //Remove Cookie Type from location
 			if(typesAtLoc.isEmpty())
