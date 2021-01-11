@@ -4,12 +4,11 @@ import java.util.HashSet;
 import static org.junit.Assert.*;
 import java.io.*;
 
-import Map.Type;
 
 
 public class TestMapGetLoc {
 	
-	public void testMapGetLoc() {
+	public void testMapGetLoc() throws FileNotFoundException {
 	//Creating A Map 
 	//Mainframe frame = new MainFrame(); //Creates A New Map With Walls and Tokens Initialized
 	NoFrame frame = new NoFrame(); //Creates A New Map With Walls and Tokens w/o a Display

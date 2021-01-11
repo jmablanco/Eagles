@@ -2,7 +2,7 @@ import junit.framework.*;
 import java.awt.Color;
 import java.io.*;
 
-import jdk.tools.jimage.resources.jimage;
+//import jdk.tools.jimage.resources.jimage;
 
 public class TestPacManValidMoves extends TestCase {
 

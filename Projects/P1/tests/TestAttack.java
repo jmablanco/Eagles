@@ -14,7 +14,7 @@ public class TestAttack extends TestCase {
 		//Ghost 2 is not by pacman, should return false;
 		assertFalse(ghost2.attack());
 		//Game should not be over
-		assertFalse(frame.getMap().isGameOver())
+		assertFalse(frame.getMap().isGameOver());
 
 		//Ghost is by pacman, and should be able to attack
 		assertTrue(ghost.attack());

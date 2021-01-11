@@ -19,7 +19,7 @@ public class TestConsume extends TestCase {
 
 		//Start The Game
 		frame.startGame();
-		CookieComponent cookie = new CookieComponent(x,y,frame.scale)
+		CookieComponent cookie = new CookieComponent(x,y,frame.scale);
 		assertTrue(pacman.consume() == null); 
 		map.add("cookie", new Location(x,y),cookie,Map.Type.COOKIE);
 		assertTrue(pacman.consume().equals(cookie)); 
