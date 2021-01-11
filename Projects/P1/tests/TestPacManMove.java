@@ -11,7 +11,6 @@ public class TestPacManMove extends TestCase {
 		int x = 2; 
 		int y = 2; 
 		//Creating Players
-		Ghost ghost = frame.addGhost(new Location(x, y), "ghost1", Color.red); //Creates a red ghost named "ghost1" at location x,y
 		PacMan pacman = frame.addPacMan(new Location(x, y)); //Creates PacMan at location x, y
 		//Start The Game
 		frame.startGame();
