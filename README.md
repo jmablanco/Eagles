@@ -23,13 +23,17 @@ In order to compile and run this program: <br/>
   match one of these. If so, remove pacman and update gameOver to true and return true.
     - Test: Have two ghosts in different locations. One is next to pacman while the other is not. The first ghost should return true when using attack while 
   the other should return false.
-  * getLoc
+  * getLoc:
+    - Implementation: Simply return the Type value (Wrapped in a HashSet) of the HashMap "field" based on the location key. Return the emptySet when there is no such mapping.
+    - Test: Creates a Ghost and Pacman at certain locations and sees whether getLoc returns them at those locations.
   * move:
     - Implementation: Moves the specified object to the new location provided if able to. Returns true if move was successful and false otherwise. 
     - Test: Tests that when a ghost moves, it is only located at it's new specified location by checking the contents of the previous location and the new location. 
 
   ### Ghost
-  * get_valid_moves
+  * get_valid_moves:
+    - Implementation: Goes through all surrounding coordinates that surround myLoc and determines whether they should be added to the arraylist to return. If the surrounding location is a wall, it should not be added.
+    - Test: Creates a ghost at a certain location and determines whether the method correctly returns the proper surrounding locations.
   * attack:
   * move:
     - Implementation: Use get_valid_moves() to get an arraylist of all available moves. Then use the Random class to select a random location from the arraylist.
@@ -41,7 +45,9 @@ In order to compile and run this program: <br/>
     - Test: Tests that when a ghost is in range of a pacman it returns true and when another pacman is not in range it returns null. 
 
   ### Pacman 
-  * get_valid_moves
+  * get_valid_moves:
+    - Implementation: Goes through all surrounding coordinates that surround myLoc and determines whether they should be added to the arraylist to return. If the surrounding location is a wall, it should not be added.
+    - Test: Creates a pacman at a certain location and determines whether the method correctly returns the proper surrounding locations.
   * consume:
     - Implementation: If there is a cookie at this current location then consumes that cookie by calling map eat-cookie. It returns the cookie if eating was successful otherwise it returns null. 
     - Test: Tests by checking that a pacman trying to consume a cookie that is not at it's location returns null. Tests another pacman located on a cookie is able to consume the cookie and return it. 
