@@ -2,6 +2,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import javax.swing.JComponent;
 
+
 public class Map{
 
 	public enum Type {
@@ -58,17 +59,68 @@ public class Map{
 	
 	public HashSet<Type> getLoc(Location loc) {
 		//wallSet and emptySet will help you write this method
-		return null;
+
+		//EMPTY is the only type not handled in MainFrane so, we handle it here.
+		if (field.get(loc) == null)
+			return emptySet;
+
+		return field.get(loc);
 	}
 
 	public boolean attack(String Name) {
-		//update gameOver
+		
+		//check if Ghost & Pacman have a location and component
+		if (locations.containsKey(Name) && components.containsKey(Name) && locations.containsKey("pacman") && components.containsKey("pacman")) {
+			
+			Location ghost_coord = locations.get(Name);
+
+			Location pac_coord = locations.get("pacman");
+			
+			//check if ghost is within pacman's vicinity
+			int x = ghost_coord.x;
+			int y = ghost_coord.y;
+				
+			for (int i = x-1; i <= x+1; i++) {
+				for (int j = y-1; j <= y+1; j++) { 
+					//Check coordinates around the ghost
+					if ( (i != x || j != y) && i >= 0 && j >= 0) {
+							
+						//pacman is found in vicinity
+						if (pac_coord.x == i && pac_coord.y == j) {
+								
+							//remove pacman
+							locations.remove("pacman");
+							locations.remove("pacman");
+								
+							//update game
+							gameOver = true;
+							return true;
+						}
+					}
+				}
+			}
+		}
 		return false;
 	}
 	
 	public JComponent eatCookie(String name) {
 		//update locations, components, field, and cookies
 		//the id for a cookie at (10, 1) is tok_x10_y1
-		return null;
+		Location cookieLoc = locations.get(name);
+		JComponent cookie = components.get(name);
+		HashSet<Type> typesAtLoc = field.get(cookieLoc);
+
+		if (cookie != null) {
+			//Updating collections
+			typesAtLoc.remove(Type.COOKIE); //Remove Cookie Type from location
+			if(typesAtLoc.isEmpty())
+				typesAtLoc.add(Type.EMPTY);
+			field.put(cookieLoc, typesAtLoc); //Updates items located at old cookie location
+			locations.remove(name);
+			components.remove(name);
+			cookies--;
+		}
+		
+		return cookie;
 	}
 }
