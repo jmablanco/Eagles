@@ -6,7 +6,7 @@ import java.io.*;
 
 
 
-public class TestMapGetLoc {
+public class TestMapGetLoc extends TestCase {
 	
 	public void testMapGetLoc() throws FileNotFoundException {
 	//Creating A Map 
@@ -15,20 +15,17 @@ public class TestMapGetLoc {
 
 	//Creating Players
 	Ghost ghost = frame.addGhost(new Location(6, 7), "name", Color.red); //Creates a red ghost named "name" at location 6,7
-	PacMan pacman = frame.addPacMan(new Location(1, 3)); //Creates PacMan at location 1,3
 
 	Map map = frame.getMap(); 
 
-	HashSet<Map.Type> ghostSet = new HashSet<Map.Type>();
-	HashSet<Map.Type> pacmanSet = new HashSet<Map.Type>();
+	HashSet<Map.Type> ghostAndCookieSet = new HashSet<Map.Type>();
 
-	ghostSet.add(Map.Type.GHOST);
-	pacmanSet.add(Map.Type.PACMAN);
+	ghostAndCookieSet.add(Map.Type.GHOST);
+	ghostAndCookieSet.add(Map.Type.COOKIE);
 
 	//Start The Game
 	//frame.startGame();
 
-	assertEquals(map.getLoc(new Location(6, 7)), ghostSet);
-	assertEquals(map.getLoc(new Location(1, 3)), pacmanSet);
+	assertEquals(map.getLoc(new Location(6, 7)), ghostAndCookieSet);
 	}
 }

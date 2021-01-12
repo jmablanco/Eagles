@@ -8,7 +8,7 @@
   * Ritik Sharma
 
 ## Playing Pacman
-
+![alt text](https://github.com/cmsc388T/Eagles/blob/main/PacManImage.png)
 ## Running from Command Line
 In order to compile and run this program: <br/>
 ``javac -cp "src/" src/*.java``  <br/>

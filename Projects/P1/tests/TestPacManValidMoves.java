@@ -24,8 +24,8 @@ public class TestPacManValidMoves extends TestCase {
 			for(int j = y-1; j <= y+1; j++) {
 				//Don't check coordinates that equal current location or less than 0 
 				if ( (i != x || j != y) && i >= 0 && j >= 0) {
-					//Assumes no walls near postion (2,3)
-					assertTrue(pacman.get_valid_moves().contains(new Location(i, j)));
+					if (!frame.getMap().getLoc(new Location(i, j)).contains(Map.Type.WALL))
+						assertTrue(pacman.get_valid_moves().contains(new Location(i, j)));
 				}
 			}
 		}
