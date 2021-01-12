@@ -4,9 +4,9 @@ import java.util.HashSet;
 import static org.junit.Assert.*;
 import java.io.*;
 
-public class TestMapMove {
+public class TestMapMove extends TestCase {
 
-	public void testMapMove() {
+	public void testMapMove() throws FileNotFoundException {
 		//Creating A Map 
 		//Mainframe frame = new MainFrame(); //Creates A New Map With Walls and Tokens Initialized
 		NoFrame frame = new NoFrame(); //Creates A New Map With Walls and Tokens w/o a Display
