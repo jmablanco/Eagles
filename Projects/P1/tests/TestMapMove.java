@@ -28,8 +28,11 @@ public class TestMapMove extends TestCase {
 		expRes1.add(Map.Type.PACMAN); 
 		expRes2.add(Map.Type.GHOST); 
 
+    
+		assertTrue(map.getLoc(new Location(x,y)).contains(Map.Type.PACMAN)); 
+		assertTrue(!map.getLoc(new Location(x,y)).contains(Map.Type.GHOST)); 
 
-		assertTrue(map.getLoc(new Location(x,y)).equals(expRes1)); 
-		assertTrue(map.getLoc(new Location(x+1,y-1)).equals(expRes2));
+		assertTrue(map.getLoc(new Location(x+1,y-1)).contains(Map.Type.GHOST));
+		assertTrue(!map.getLoc(new Location(x+1,y-1)).contains(Map.Type.PACMAN));
 	}
 }
