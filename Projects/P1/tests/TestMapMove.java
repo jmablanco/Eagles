@@ -6,10 +6,6 @@ import java.io.*;
 
 public class TestMapMove {
 
-<<<<<<< Updated upstream
-	public void testMapMove() {
-		return null; 
-=======
 	public void testMapMove() throws FileNotFoundException {
 		//Creating A Map 
 		//Mainframe frame = new MainFrame(); //Creates A New Map With Walls and Tokens Initialized
@@ -39,6 +35,5 @@ public class TestMapMove {
 		assertTrue(map.getLoc(new Location(x+1,y-1)).contains(Map.Type.GHOST));
 		assertTrue(!map.getLoc(new Location(x+1,y-1)).contains(Map.Type.PACMAN));
 
->>>>>>> Stashed changes
 	}
 }
