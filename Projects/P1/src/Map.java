@@ -62,29 +62,31 @@ public class Map{
 		if(prev != null && prevfield != null && prevcomp != null){
 			prevfield.remove(type); 
 		}
-
-
 		// Checks that the location is not a wall 
 		if (field.containsKey(loc)){
 			HashSet<Type> currplacement = field.get(loc);
 			if(currplacement.contains(Type.WALL)){
+				System.out.print("Failed moving becuase wall"); 
 				return false; 
 			}
+		}
+		//Gets the component of that name and sets it to new location. If the comp doesn't 
+		//exist then returns false; 
+		JComponent comp = components.get(name);
+		if(comp == null){
+			System.out.print("Failed moving becuase no component"); 
+			return false; 
 		}
 
 		// Adds name to locations list
 		locations.put(name, loc);
+		components.put(name, comp); 
 		// if there is nothing at that location then make a new set, otherwise add 
 		// to the other set. 
 		if (!field.containsKey(loc)) field.put(loc, new HashSet<Type>());
 		field.get(loc).add(type);
 
-		//Gets the component of that name and sets it to new location. If the comp doesn't 
-		//exist then returns false; 
-		JComponent comp = components.get(name);
-		if(comp == null){
-			return false; 
-		}
+		
 		comp.setLocation(loc.x, loc.y);
 		return true;
 	}
@@ -147,12 +149,11 @@ public class Map{
 			typesAtLoc.remove(Type.COOKIE); //Remove Cookie Type from location
 			if(typesAtLoc.isEmpty())
 				typesAtLoc.add(Type.EMPTY);
-			field.put(cookieLoc, typesAtLoc); //Updates items located at old cookie location
-			locations.remove(name);
-			components.remove(name);
-			cookies--;
+			//field.put(cookieLoc, typesAtLoc); //Updates items located at old cookie location
+			locations.remove("tok_x"+cookieLoc.x+"_y"+cookieLoc.y);
+			cookies++;
 		}
 		
-		return cookie;
+		return components.get("tok_x"+cookieLoc.x+"_y"+cookieLoc.y);
 	}
 }
