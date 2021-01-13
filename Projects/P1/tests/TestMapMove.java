@@ -16,7 +16,7 @@ public class TestMapMove extends TestCase {
 		Ghost ghost = frame.addGhost(new Location(x, y), "ghost1", Color.red); //Creates a red ghost named "ghost1" at location x,y
 		PacMan pacman = frame.addPacMan(new Location(x, y)); //Creates PacMan at location x, y
 		//Start The Game
-		frame.startGame();
+		//frame.startGame();
 		Map map = frame.getMap(); 
 
 		//Move ghost 
