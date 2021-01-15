@@ -95,8 +95,13 @@ public class Map{
 		//wallSet and emptySet will help you write this method
 
 		//EMPTY is the only type not handled in MainFrane so, we handle it here.
-		if (field.get(loc) == null)
+		if (field.get(loc) != null)
+			return wallSet;
+		
+		//Out of bounds (WALL)
+		if (loc.x > 0 || loc.x < dim || loc.y > 0 || loc.y < dim) {
 			return emptySet;
+		}
 
 		return field.get(loc);
 	}
