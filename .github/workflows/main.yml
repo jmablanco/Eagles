@@ -2,8 +2,7 @@
 
 name: CI
 
-default:
-  image: openjdk
+container: openjdk
 
 # Controls when the action will run. 
 on:
