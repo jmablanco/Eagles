@@ -44,7 +44,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Compiles the code and runs the test 
-        run: 
+        run: |
           javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
           java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestMapMove
   testPacmanConsume:
@@ -62,7 +62,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Compiles the code and runs the test 
-        run: 
+        run: |
           javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
           java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestConsume
   testGhostInRange:
@@ -80,6 +80,6 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Compiles the code and runs the test 
-        run: 
+        run: |
           javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
           java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestGhostInRange
