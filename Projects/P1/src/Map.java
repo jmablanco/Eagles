@@ -63,7 +63,7 @@ public class Map{
 			prevfield.remove(type); 
 		}
 		// Checks that the location is not a wall 
-		if (field.containsKey(loc)){
+		if (!field.containsKey(loc)){
 			HashSet<Type> currplacement = field.get(loc);
 			if(currplacement.contains(Type.WALL)){
 				System.out.print("Failed moving becuase wall"); 
@@ -78,16 +78,8 @@ public class Map{
 			return false; 
 		}
 
-		// Adds name to locations list
-		locations.put(name, loc);
-		components.put(name, comp); 
-		// if there is nothing at that location then make a new set, otherwise add 
-		// to the other set. 
-		if (!field.containsKey(loc)) field.put(loc, new HashSet<Type>());
-		field.get(loc).add(type);
 
 		
-		comp.setLocation(loc.x, loc.y);
 		return true;
 	}
 	
