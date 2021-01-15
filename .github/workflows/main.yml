@@ -121,12 +121,11 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      # Runs a single command using the runners shell
       - name: Compiles the code and runs the test 
         run: |
           javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
           java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestGhostInRange
-          
+
   testPacmanInRange:
       # The type of runner that the job will run on
       runs-on: ubuntu-latest
@@ -138,12 +137,11 @@ jobs:
       steps:
         # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         - uses: actions/checkout@v2
-
-        # tests PacmanInRange, Ghost-move, Map-attack
         - name: compile actions-David-test1
           run: |
             javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
             java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestPacManInRange
+
     testGhostMove:
       # The type of runner that the job will run on
       runs-on: ubuntu-latest
@@ -155,12 +153,11 @@ jobs:
       steps:
         # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         - uses: actions/checkout@v2
-
-        # tests PacmanInRange, Ghost-move, Map-attack
         - name: compile actions-David-test2
           run: |
             javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
             java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestGhostMove
+            
     testMapAttack:
       # The type of runner that the job will run on
       runs-on: ubuntu-latest
@@ -172,8 +169,6 @@ jobs:
       steps:
         # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         - uses: actions/checkout@v2
-
-        # tests PacmanInRange, Ghost-move, Map-attack
         - name: compile actions-David-test3
           run: |
             javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
