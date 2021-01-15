@@ -94,9 +94,14 @@ public class Map{
 	public HashSet<Type> getLoc(Location loc) {
 		//wallSet and emptySet will help you write this method
 
-		//EMPTY is the only type not handled in MainFrane so, we handle it here.
+		//EMPTY
 		if (field.get(loc) == null)
 			return emptySet;
+
+		//Out of bounds (WALL)
+		if (loc.x < 0 || loc.x >= dim || loc.y < 0 || loc.y >= dim) {
+			return wallSet;
+		}
 
 		return field.get(loc);
 	}
@@ -141,7 +146,7 @@ public class Map{
 		//update locations, components, field, and cookies
 		//the id for a cookie at (10, 1) is tok_x10_y1
 		Location cookieLoc = locations.get(name);
-		JComponent cookie = components.get(name);
+		JComponent cookie = components.get("tok_x"+cookieLoc.x+"_y"+cookieLoc.y);
 		HashSet<Type> typesAtLoc = field.get(cookieLoc);
 
 		if (cookie != null) {
@@ -151,9 +156,12 @@ public class Map{
 				typesAtLoc.add(Type.EMPTY);
 			//field.put(cookieLoc, typesAtLoc); //Updates items located at old cookie location
 			locations.remove("tok_x"+cookieLoc.x+"_y"+cookieLoc.y);
+			components.remove("tok_x"+cookieLoc.x+"_y"+cookieLoc.y);
 			cookies++;
+			return cookie;
+
 		}
 		
-		return components.get("tok_x"+cookieLoc.x+"_y"+cookieLoc.y);
+		return null;
 	}
 }
