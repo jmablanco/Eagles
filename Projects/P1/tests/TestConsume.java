@@ -18,11 +18,13 @@ public class TestConsume extends TestCase {
 		//frame.initPlayers(); //Creates all of the players
 
 		//Start The Game
-		frame.startGame();
-		CookieComponent cookie = new CookieComponent(x,y,frame.scale);
+		//frame.startGame();
 		assertTrue(pacman.consume() == null); 
-		map.add("cookie", new Location(x,y),cookie,Map.Type.COOKIE);
-		assertTrue(pacman.consume().equals(cookie)); 
+
+		CookieComponent tok = new CookieComponent(x,y,frame.scale);
+		map.add("tok_x"+x+"_y"+y, new Location(x, y), tok, Map.Type.COOKIE);
+		tok.setLocation(x, y);
+		assertTrue(pacman.consume() != null); 
 
 	}
 }
