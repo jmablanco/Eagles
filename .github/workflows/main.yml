@@ -6,9 +6,9 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main, FTR-actions ]
+    branches: [main, FTR-actions]
   pull_request:
-    branches: [ main, FTR-actions ]
+    branches: [main, FTR-actions]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -29,6 +29,23 @@ jobs:
       # Runs a single command using the runners shell
       - name: Compiles the code
         run: javac -cp "src/" Projects/P1/src/*.java
+
+  testPacmanValidMoves:
+    runs-on: ubuntu-latest
+    container: openjdk
+    defaults:
+      run:
+        working-directory: Projects/P1
+        
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: Compiles the code and runs the test TestPacManValidMoves
+        run: |
+          javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
+          java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestPacManValidMoves
+  
   testMapMove:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -36,17 +53,31 @@ jobs:
     defaults:
       run:
         working-directory: Projects/P1
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
       # Runs a single command using the runners shell
       - name: Compiles the code and runs the test 
         run: |
           javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
           java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestMapMove
+
+  testGhostValidMoves:
+    runs-on: ubuntu-latest
+    container: openjdk
+    defaults:
+      run:
+        working-directory: Projects/P1
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: Compiles the code and runs the test TestGhostValidMoves
+        run: |
+          javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
+          java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestGhostValidMoves
+  
   testPacmanConsume:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -54,17 +85,30 @@ jobs:
     defaults:
       run:
         working-directory: Projects/P1
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
       # Runs a single command using the runners shell
       - name: Compiles the code and runs the test 
         run: |
           javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
           java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestConsume
+
+  testMapGetLoc:
+    runs-on: ubuntu-latest
+    container: openjdk
+    defaults:
+      run:
+        working-directory: Projects/P1
+    steps:
+  # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: Compiles the code and runs the test TestMapGetLoc
+        run: |
+      javac -cp "tests/junit-4.10.jar:src/:tests/" src/*.java tests/*.java
+      java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestMapGetLoc
+      
   testGhostInRange:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -72,12 +116,11 @@ jobs:
     defaults:
       run:
         working-directory: Projects/P1
-
+    
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
       # Runs a single command using the runners shell
       - name: Compiles the code and runs the test 
         run: |
