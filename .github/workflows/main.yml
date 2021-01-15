@@ -72,5 +72,5 @@ jobs:
       # Runs a single command using the runners shell
       - name: Compiles the code and runs the test 
         run: 
-          javac -cp "tests/junit-4.10.jar:src/:tests/" Projects/P1/src/*.java Projects/P1/tests/*.java
-          java -cp "tests/junit-4.10.jar:src/:tests/" org.junit.runner.JUnitCore TestGhostInRange
+          javac -cp "junit-4.10.jar" Projects/P1/src/*.java Projects/P1/tests/*.java
+          java -cp "junit-4.10.jar" org.junit.runner.JUnitCore TestGhostInRange
