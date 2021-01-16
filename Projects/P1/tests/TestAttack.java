@@ -9,7 +9,7 @@ public class TestAttack extends TestCase {
 		Ghost ghost = frame.addGhost(new Location(10, 5), "clyde", Color.orange);
 		Ghost ghost2 = frame.addGhost(new Location(12, 10), "blinky", Color.red);
 		PacMan pacman = frame.addPacMan(new Location(11, 5));
-		frame.startGame();
+		//frame.startGame();
 
 		//Ghost 2 is not by pacman, should return false;
 		assertFalse(ghost2.attack());
