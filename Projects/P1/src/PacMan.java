@@ -71,11 +71,11 @@ public class PacMan{
 					HashSet<Map.Type> loc = myMap.getLoc(coord);
 					
 					if (loc.contains(Map.Type.GHOST))
-						return true;   
+						return false;   
 				}
 			}
 		}
-		return false;
+		return true;
 	}
 
 	public JComponent consume() { 
