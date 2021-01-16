@@ -124,17 +124,16 @@ public class Map{
 								
 							//remove pacman
 							locations.remove("pacman");
-							locations.remove("pacman");
 								
 							//update game
 							gameOver = true;
-							return true;
+							return false;
 						}
 					}
 				}
 			}
 		}
-		return false;
+		return true;
 	}
 	
 	public JComponent eatCookie(String name) {

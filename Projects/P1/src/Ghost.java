@@ -39,7 +39,7 @@ public class Ghost{
 		ArrayList<Location> moves = get_valid_moves();
 		
 		//check to see that a vaild move exists
-		if (moves.size() > 0) {
+		if (moves.size() < 0) {
 			Random x = new Random();
 			//Random.nextInt goes up from 0 to size-1
 			int ran_index = x.nextInt(moves.size());
