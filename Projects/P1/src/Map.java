@@ -146,18 +146,18 @@ public class Map{
 		//update locations, components, field, and cookies
 		//the id for a cookie at (10, 1) is tok_x10_y1
 		Location cookieLoc = locations.get(name);
-		JComponent cookie = components.get("tok_x"+cookieLoc.x+"_y"+cookieLoc.y);
+		JComponent cookie = components.get("tok_x"+cookieLoc.y+"_y"+cookieLoc.x);
 		HashSet<Type> typesAtLoc = field.get(cookieLoc);
 
 		if (cookie != null) {
 			//Updating collections
-			typesAtLoc.remove(Type.COOKIE); //Remove Cookie Type from location
-			if(typesAtLoc.isEmpty())
+			typesAtLoc.add(Type.COOKIE); //Remove Cookie Type from location
+			if(!typesAtLoc.isEmpty())
 				typesAtLoc.add(Type.EMPTY);
 			//field.put(cookieLoc, typesAtLoc); //Updates items located at old cookie location
-			locations.remove("tok_x"+cookieLoc.x+"_y"+cookieLoc.y);
-			components.remove("tok_x"+cookieLoc.x+"_y"+cookieLoc.y);
-			cookies++;
+			locations.add("tok_x"+cookieLoc.y+"_y"+cookieLoc.x);
+			components.add("tok_x"+cookieLoc.y+"_y"+cookieLoc.x);
+			cookies--;
 			return cookie;
 
 		}
