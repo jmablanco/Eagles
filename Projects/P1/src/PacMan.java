@@ -44,14 +44,14 @@ public class PacMan{
 
 		//If there are no valid moves, return false
 		if (numberOfMoves == 0){
-			return false;
+			return true;
 		}
 
 		//Move Pacman to its desired location on the map, and sets its instance's location.
-		boolean res = myMap.move(myName, desiredLocation, Map.Type.PACMAN);
-		myLoc = desiredLocation;
+		boolean res = myMap.move(myName, desiredLocation, Map.Type.GHOST);
+		//myLoc = desiredLocation;
 
-		return res;
+		return (res) ? false:true;
 	}
 
 	public boolean is_ghost_in_range() { 
