@@ -13,7 +13,7 @@ public class TestPacManMove extends TestCase {
 		//Creating Players
 		PacMan pacman = frame.addPacMan(new Location(x, y)); //Creates PacMan at location x, y
 		//Start The Game
-		frame.startGame();
+		//frame.startGame();
 		Map map = frame.getMap(); 
 
 		//Checks if PACMAN is at location before the move.
