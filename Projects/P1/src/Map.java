@@ -63,7 +63,7 @@ public class Map{
 			prevfield.remove(type); 
 		}
 		// Checks that the location is not a wall 
-		if (!field.containsKey(loc)){
+		if (field.containsKey(loc)){
 			HashSet<Type> currplacement = field.get(loc);
 			if(currplacement.contains(Type.WALL)){
 				System.out.print("Failed moving becuase wall"); 
@@ -78,8 +78,7 @@ public class Map{
 			return false; 
 		}
 
-
-		
+		add(name, loc, comp, type);
 		return true;
 	}
 	
