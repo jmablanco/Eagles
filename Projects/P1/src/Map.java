@@ -95,10 +95,6 @@ public class Map{
 			return wallSet;
 		}
 
-		if (field.get(loc).contains(Map.Type.COOKIE)) {
-			return emptySet;
-		}
-
 		return field.get(loc);
 	}
 
