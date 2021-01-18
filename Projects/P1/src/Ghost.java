@@ -57,18 +57,18 @@ public class Ghost{
 	}
 
 	public boolean is_pacman_in_range() { 
-		int x = myLoc.x;
-		int y = myLoc.y;
+		int x = myLoc.y;
+		int y = myLoc.x;
 
 		//go through all coords that surround myLoc
 		for(int i = x-1; i <= x+1; i++) {
 			for(int j = y-1; j <= y+1; j++) {
 
 				//Don't check coordinates that equal current location or less than 0 
-				if ( (i != x || j != y) && i >= 0 && j >= 0) {
-					HashSet<Map.Type> loc = myMap.getLoc(new Location(i,j));
+				if (i != x || j != y && i >= 0 && j >= 0) {
+					HashSet<Map.Type> loc = myMap.getLoc(new Location(x,y));
 
-					if (loc.contains(Map.Type.PACMAN)){
+					if (loc.contains(Map.Type.GHOST)){
 						return true;   
 					}
 				}
