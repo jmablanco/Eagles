@@ -63,7 +63,7 @@ public class Map{
 			prevfield.remove(type); 
 		}
 		// Checks that the location is not a wall 
-		if (field.containsKey(loc)){
+		if (!field.containsKey(loc)){
 			HashSet<Type> currplacement = field.get(loc);
 			if(currplacement.contains(Type.WALL)){
 				System.out.print("Failed moving becuase wall"); 
@@ -78,16 +78,8 @@ public class Map{
 			return false; 
 		}
 
-		// Adds name to locations list
-		locations.put(name, loc);
-		components.put(name, comp); 
-		// if there is nothing at that location then make a new set, otherwise add 
-		// to the other set. 
-		if (!field.containsKey(loc)) field.put(loc, new HashSet<Type>());
-		field.get(loc).add(type);
 
 		
-		comp.setLocation(loc.x, loc.y);
 		return true;
 	}
 	
@@ -101,6 +93,10 @@ public class Map{
 		//Out of bounds (WALL)
 		if (loc.x < 0 || loc.x >= dim || loc.y < 0 || loc.y >= dim) {
 			return wallSet;
+		}
+
+		if (field.get(loc).contains(Map.Type.COOKIE)) {
+			return emptySet;
 		}
 
 		return field.get(loc);
@@ -129,35 +125,34 @@ public class Map{
 								
 							//remove pacman
 							locations.remove("pacman");
-							locations.remove("pacman");
 								
 							//update game
 							gameOver = true;
-							return true;
+							return false;
 						}
 					}
 				}
 			}
 		}
-		return false;
+		return true;
 	}
 	
 	public JComponent eatCookie(String name) {
 		//update locations, components, field, and cookies
 		//the id for a cookie at (10, 1) is tok_x10_y1
 		Location cookieLoc = locations.get(name);
-		JComponent cookie = components.get("tok_x"+cookieLoc.x+"_y"+cookieLoc.y);
+		JComponent cookie = components.get("tok_x"+cookieLoc.y+"_y"+cookieLoc.x);
 		HashSet<Type> typesAtLoc = field.get(cookieLoc);
 
 		if (cookie != null) {
 			//Updating collections
-			typesAtLoc.remove(Type.COOKIE); //Remove Cookie Type from location
-			if(typesAtLoc.isEmpty())
+			typesAtLoc.add(Type.COOKIE); //Remove Cookie Type from location
+			if(!typesAtLoc.isEmpty())
 				typesAtLoc.add(Type.EMPTY);
 			//field.put(cookieLoc, typesAtLoc); //Updates items located at old cookie location
-			locations.remove("tok_x"+cookieLoc.x+"_y"+cookieLoc.y);
-			components.remove("tok_x"+cookieLoc.x+"_y"+cookieLoc.y);
-			cookies++;
+			locations.put("tok_x"+cookieLoc.y+"_y"+cookieLoc.x, new Location(cookieLoc.x, cookieLoc.y));
+			components.put("tok_x"+cookieLoc.y+"_y"+cookieLoc.x, cookie);
+			cookies--;
 			return cookie;
 
 		}
