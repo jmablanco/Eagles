@@ -94,12 +94,16 @@ public class Map{
 	public HashSet<Type> getLoc(Location loc) {
 		//wallSet and emptySet will help you write this method
 
-		//EMPTY is the only type not handled in MainFrane so, we handle it here.
-		if (field.get(loc) != null)
-			return wallSet;
-		
+		//EMPTY
+		if (field.get(loc) == null)
+			return emptySet;
+
 		//Out of bounds (WALL)
-		if (loc.x > 0 || loc.x < dim || loc.y > 0 || loc.y < dim) {
+		if (loc.x < 0 || loc.x >= dim || loc.y < 0 || loc.y >= dim) {
+			return wallSet;
+		}
+
+		if (field.get(loc).contains(Map.Type.COOKIE)) {
 			return emptySet;
 		}
 
