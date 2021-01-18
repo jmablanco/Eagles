@@ -23,10 +23,10 @@ public class Ghost{
 		
 		//go through all coords that surround myLoc
 		for(int i = x-1; i <= x+1; i++) {
-			for(int j = i-1; j <= i+1; j++) {
+			for(int j = y-1; j <= y+1; j++) {
 				
 				//Don't check coordinates that equal current location or less than 0 
-				if ( (i != x && j != y) && i >= 0 && j >= 0) {
+				if ( (i != x || j != y) && i >= 0 && j >= 0) {
 					if (!myMap.getLoc(new Location(x, y)).contains(Map.Type.WALL))
 						temp.add(new Location(x, y));
 				}
@@ -50,10 +50,10 @@ public class Ghost{
 			//set ghost location to new_move
 			myLoc = new_move;
 			myMap.move(myName, new_move, Map.Type.GHOST);
-			return true;
+			return false;
 		}
 		//no valid moves available
-		return false;
+		return true;
 	}
 
 	public boolean is_pacman_in_range() { 
