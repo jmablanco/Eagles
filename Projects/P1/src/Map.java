@@ -124,13 +124,13 @@ public class Map{
 								
 							//update game
 							gameOver = true;
-							return false;
+							return true;
 						}
 					}
 				}
 			}
 		}
-		return true;
+		return false;
 	}
 	
 	public JComponent eatCookie(String name) {
