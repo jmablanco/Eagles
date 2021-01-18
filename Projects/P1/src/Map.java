@@ -146,8 +146,8 @@ public class Map{
 			if(!typesAtLoc.isEmpty())
 				typesAtLoc.add(Type.EMPTY);
 			//field.put(cookieLoc, typesAtLoc); //Updates items located at old cookie location
-			locations.add("tok_x"+cookieLoc.y+"_y"+cookieLoc.x, new Location(cookieLoc.x, cookieLoc.y));
-			components.add("tok_x"+cookieLoc.y+"_y"+cookieLoc.x, cookie);
+			locations.put("tok_x"+cookieLoc.y+"_y"+cookieLoc.x, new Location(cookieLoc.x, cookieLoc.y));
+			components.put("tok_x"+cookieLoc.y+"_y"+cookieLoc.x, cookie);
 			cookies--;
 			return cookie;
 
