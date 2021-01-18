@@ -66,9 +66,9 @@ public class Ghost{
 
 				//Don't check coordinates that equal current location or less than 0 
 				if (i != x || j != y && i >= 0 && j >= 0) {
-					HashSet<Map.Type> loc = myMap.getLoc(new Location(x,y));
+					HashSet<Map.Type> loc = myMap.getLoc(new Location(i,j));
 
-					if (loc.contains(Map.Type.GHOST)){
+					if (loc.contains(Map.Type.PACMAN)){
 						return true;   
 					}
 				}
