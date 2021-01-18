@@ -49,9 +49,9 @@ public class PacMan{
 
 		//Move Pacman to its desired location on the map, and sets its instance's location.
 		boolean res = myMap.move(myName, desiredLocation, Map.Type.GHOST);
-		//myLoc = desiredLocation;
+		myLoc = desiredLocation;
 
-		return (res) ? false:true;
+		return res;
 	}
 
 	public boolean is_ghost_in_range() { 
