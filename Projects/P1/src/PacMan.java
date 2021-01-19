@@ -27,8 +27,8 @@ public class PacMan{
 				
 				//Don't check coordinates that equal current location or less than 0 
 				if ( (i != x || j != y) && i >= 0 && j >= 0) {
-					if (!myMap.getLoc(new Location(x, y)).contains(Map.Type.WALL))
-						temp.add(new Location(x, y));
+					if (!myMap.getLoc(new Location(i, j)).contains(Map.Type.WALL))
+						temp.add(new Location(i, j));
 				}
 			}
 		}
@@ -44,14 +44,14 @@ public class PacMan{
 
 		//If there are no valid moves, return false
 		if (numberOfMoves == 0){
-			return true;
+			return false;
 		}
 
 		//Move Pacman to its desired location on the map, and sets its instance's location.
-		boolean res = myMap.move(myName, desiredLocation, Map.Type.GHOST);
-		//myLoc = desiredLocation;
+		boolean res = myMap.move(myName, desiredLocation, Map.Type.PACMAN);
+		myLoc = desiredLocation;
 
-		return (res) ? false:true;
+		return res;
 	}
 
 	public boolean is_ghost_in_range() { 
@@ -71,18 +71,18 @@ public class PacMan{
 					HashSet<Map.Type> loc = myMap.getLoc(coord);
 					
 					if (loc.contains(Map.Type.GHOST))
-						return false;   
+						return true;   
 				}
 			}
 		}
-		return true;
+		return false;
 	}
 
 	public JComponent consume() { 
  		HashSet<Map.Type> currLoc = myMap.getLoc(myLoc); //Gets the list of what is located at pacmans location
 		//If the location has a cookie then call eat cookie from Map 
-		if(!currLoc.contains(Map.Type.COOKIE)){
-			myMap.eatCookie(myName); 
+		if (currLoc.contains(Map.Type.COOKIE)) {
+			return myMap.eatCookie(myName);
 		}
 		return null;
 	}
